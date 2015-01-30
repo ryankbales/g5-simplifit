@@ -1,6 +1,11 @@
 class SimplifitUsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update]
   before_action :require_same_user, only: [:edit, :update]
+
+  def index
+    @user = SimplifitUser.all
+  end
+
 	def new
     @user = SimplifitUser.new
   end
