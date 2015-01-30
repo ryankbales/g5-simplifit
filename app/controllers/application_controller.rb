@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   #for development until oauth is plugged in
   helper_method :current_user
 
-  def current_user
-    @current_user ||= User.first
-  end
+  # def current_user
+  #   @current_user ||= User.first
+  # end
 
 end
