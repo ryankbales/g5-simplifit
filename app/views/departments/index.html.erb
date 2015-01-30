@@ -1,0 +1,8 @@
+<%= render 'shared/content_title', title: 'Departments' %>
+<% @departments.each do |department| %>
+	<ul>
+		<li>
+			<%= department.name %>
+		</li>
+	</ul>
+<% end %>

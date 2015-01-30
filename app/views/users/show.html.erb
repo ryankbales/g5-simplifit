@@ -1,1 +1,5 @@
-<h1>Show User</h1>
+<%= render 'shared/content_title', title: "Profile For #{@user.first_name}" + " #{@user.last_name}" %>
+<h3>User Age: </h3><%= @user.age %>
+<h3>User Gender: </h3><%= @user.gender %>
+<h3>User Department: </h3><%= @user.department.name %>
+<h3>User Join Date: </h3><%= @user.created_at %>
