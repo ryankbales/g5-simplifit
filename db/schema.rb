@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130213609) do
+ActiveRecord::Schema.define(version: 20150130205951) do
 
-  create_table "departments", force: :cascade do |t|
+  create_table "departments", force: true do |t|
     t.string "name"
   end
 
-  create_table "g5_authenticatable_users", force: :cascade do |t|
+  create_table "g5_authenticatable_users", force: true do |t|
     t.string   "email",              default: "",   null: false
     t.string   "provider",           default: "g5", null: false
     t.string   "uid",                               null: false
@@ -34,16 +34,16 @@ ActiveRecord::Schema.define(version: 20150130213609) do
   add_index "g5_authenticatable_users", ["email"], name: "index_g5_authenticatable_users_on_email", unique: true
   add_index "g5_authenticatable_users", ["provider", "uid"], name: "index_g5_authenticatable_users_on_provider_and_uid", unique: true
 
-  create_table "grand_prize_winners", force: :cascade do |t|
-    t.integer  "user_id"
+  create_table "grand_prize_winners", force: true do |t|
+    t.integer  "simplifit_user_id"
     t.datetime "created_at"
   end
 
-  create_table "raffles", force: :cascade do |t|
+  create_table "raffles", force: true do |t|
     t.datetime "created_at"
   end
 
-  create_table "simplifit_users", force: :cascade do |t|
+  create_table "simplifit_users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "age"
@@ -53,17 +53,17 @@ ActiveRecord::Schema.define(version: 20150130213609) do
     t.datetime "updated_at"
   end
 
-  create_table "user_raffle_winners", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "user_raffle_winners", force: true do |t|
+    t.integer "simplifit_user_id"
     t.integer "raffle_id"
   end
 
-  create_table "user_workouts", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "user_workouts", force: true do |t|
+    t.integer "simplifit_user_id"
     t.integer "workout_id"
   end
 
-  create_table "workouts", force: :cascade do |t|
+  create_table "workouts", force: true do |t|
     t.string   "type"
     t.datetime "created_at"
     t.integer  "duration"
