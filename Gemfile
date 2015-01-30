@@ -24,6 +24,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #bootstrap the app
 gem 'bootstrap-sass', '~> 3.3.3'
 
+gem 'g5_authenticatable'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -43,6 +45,8 @@ group :development, :test do
 	gem 'sqlite3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'dotenv-rails'
 end
 
 group :production do

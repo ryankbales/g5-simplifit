@@ -1,8 +1,8 @@
-class UsersController < ApplicationController
+class SimplifitUsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update]
   before_action :require_same_user, only: [:edit, :update]
 	def new
-    @user = User.new
+    @user = SimplifitUser.new
   end
 
   def show
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = SimplifitUser.new(user_params)
     if @user.save
       flash[:notice] = "You are registered!"
       redirect_to user_path(@user)
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = SimplifitUser.find(params[:id])
   end
 
   # def require_same_user

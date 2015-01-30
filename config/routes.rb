@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  mount G5Authenticatable::Engine => '/g5_auth'
+  root 'simplifit_users#index'
 
-  get 'register', to: 'users#new'
+  get 'register', to: 'simplifit_users#new'
 
-  resources :users
+  resources :simplifit_users
   resources :departments
 
   #static pages

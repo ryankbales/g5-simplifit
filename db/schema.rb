@@ -11,11 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129233518) do
+ActiveRecord::Schema.define(version: 20150130213609) do
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
   end
+
+  create_table "g5_authenticatable_users", force: :cascade do |t|
+    t.string   "email",              default: "",   null: false
+    t.string   "provider",           default: "g5", null: false
+    t.string   "uid",                               null: false
+    t.string   "g5_access_token"
+    t.integer  "sign_in_count",      default: 0,    null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "g5_authenticatable_users", ["email"], name: "index_g5_authenticatable_users_on_email", unique: true
+  add_index "g5_authenticatable_users", ["provider", "uid"], name: "index_g5_authenticatable_users_on_provider_and_uid", unique: true
 
   create_table "grand_prize_winners", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,6 +43,16 @@ ActiveRecord::Schema.define(version: 20150129233518) do
     t.datetime "created_at"
   end
 
+  create_table "simplifit_users", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "age"
+    t.string   "gender"
+    t.integer  "department_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_raffle_winners", force: :cascade do |t|
     t.integer "user_id"
     t.integer "raffle_id"
@@ -34,16 +61,6 @@ ActiveRecord::Schema.define(version: 20150129233518) do
   create_table "user_workouts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "workout_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "age"
-    t.string   "gender"
-    t.integer  "department_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "workouts", force: :cascade do |t|

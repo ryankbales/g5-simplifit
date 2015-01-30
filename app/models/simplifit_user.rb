@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class SimplifitUser < ActiveRecord::Base
 	belongs_to :department
 	belongs_to :grand_prize_winner
 
