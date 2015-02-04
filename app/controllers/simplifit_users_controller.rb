@@ -26,7 +26,7 @@ class SimplifitUsersController < ApplicationController
     @user = SimplifitUser.new(user_params)
     if @user.save
       flash[:notice] = "You are registered!"
-      redirect_to user_path(@user)
+      redirect_to simplifit_user_path(@user)
     else
       render :new
     end
@@ -38,14 +38,14 @@ class SimplifitUsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:notice] = "Your Profile Was Updated"
-      redirect_to user_path
+      redirect_to simplifit_user_path
     else
       render :new
     end
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :age, :gender, :department_id, :timezone)
+    params.require(:simplifit_user).permit(:first_name, :last_name, :age, :user_email, :gender, :department_id, :timezone)
   end
 
   private
