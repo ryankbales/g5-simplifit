@@ -15,6 +15,12 @@
   </div>
   <div class='form-group'>
     <div class='col-sm-10'>
+      <%= f.label :user_email %>
+      <%= f.email_field :user_email, value: @oauth_user_email, class: 'form-control' %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <div class='col-sm-10'>
       <%= f.label :age %>
       <%= f.number_field :age, class: 'form-control' %>
     </div>

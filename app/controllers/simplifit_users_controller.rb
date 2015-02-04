@@ -3,11 +3,19 @@ class SimplifitUsersController < ApplicationController
   before_action :require_same_user, only: [:edit, :update]
 
   def index
-    @user = SimplifitUser.all
+    email = current_user.email
+    if SimplifitUser.find_by_user_email(email)
+      current_app_user = SimplifitUser.find_by_user_email(email)
+      redirect_to user_path(current_app_user)
+    else
+      flash[:notice] = "You're new here.  Create a profile."
+      redirect_to new_simplifit_user_path
+    end
   end
 
 	def new
     @user = SimplifitUser.new
+    @oauth_user_email = current_user.email
   end
 
   def show
