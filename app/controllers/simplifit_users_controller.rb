@@ -6,7 +6,7 @@ class SimplifitUsersController < ApplicationController
     email = current_user.email
     if SimplifitUser.find_by_user_email(email)
       current_app_user = SimplifitUser.find_by_user_email(email)
-      redirect_to user_path(current_app_user)
+      redirect_to simplifit_user_path(current_app_user)
     else
       flash[:notice] = "You're new here.  Create a profile."
       redirect_to new_simplifit_user_path
@@ -19,7 +19,7 @@ class SimplifitUsersController < ApplicationController
   end
 
   def show
-
+    @workout = Workout.new
   end
 
   def create
