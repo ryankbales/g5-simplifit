@@ -1,0 +1,23 @@
+<div class="well">
+	<p class="lead">Create A New Workout Category:</p>
+	<%= form_for @workout_category, html: {class: 'form-inline'} do |f|%>
+		<div class="form-group">
+			<%= f.label :category %>
+			<%= f.text_field :category, class: 'form-control' %>
+		</div>
+		<div class="form-group">
+			<%= f.submit "Create Workout", class: "btn btn-success" %>
+		</div>
+	<% end %>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Current Workout Categories</th>
+  </tr>
+  <% @workout_categories.all.each do |workout| %>
+	  <tr>
+	    <td><%= workout.category %></td>
+	  </tr>
+  <% end %>
+</table>

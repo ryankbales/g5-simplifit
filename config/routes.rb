@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   end
 
   resources :departments
-  resources :workout_types
+  resources :workouts
+  resources :workout_categories
 
   #static pages
   get 'about' => 'pages#about'
