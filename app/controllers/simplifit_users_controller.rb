@@ -24,6 +24,7 @@ class SimplifitUsersController < ApplicationController
 
   def create
     @user = SimplifitUser.new(user_params)
+    @user.user_avatar = find_g5_image(@user.first_name, @user.last_name)
     if @user.save
       flash[:notice] = "You are registered!"
       redirect_to simplifit_user_path(@user)
@@ -45,7 +46,7 @@ class SimplifitUsersController < ApplicationController
   end
 
   def user_params
-    params.require(:simplifit_user).permit(:first_name, :last_name, :age, :user_email, :gender, :department_id, :timezone)
+    params.require(:simplifit_user).permit(:first_name, :last_name, :age, :user_email, :user_avatar, :gender, :department_id, :timezone)
   end
 
   private
