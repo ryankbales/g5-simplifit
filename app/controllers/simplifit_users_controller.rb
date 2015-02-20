@@ -20,6 +20,7 @@ class SimplifitUsersController < ApplicationController
 
   def show
     @workout = Workout.new
+    @workout_categories = WorkoutCategory.all
   end
 
   def create

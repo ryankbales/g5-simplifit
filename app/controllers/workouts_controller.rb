@@ -9,7 +9,7 @@ class WorkoutsController < ApplicationController
       flash[:notice] = "Your workout has been recorded.  Nice work!"
       redirect_to :back
     else
-      render :new
+      render simplifit_user_path(@user)
     end
   end
 
@@ -17,6 +17,7 @@ class WorkoutsController < ApplicationController
 	end
 
 	def workout_params
-    params.require(:workout).permit(:type_id, :duration)
+     binding.pry
+    params.require(:workout).permit(:workout_category_id, :duration)
   end
 end

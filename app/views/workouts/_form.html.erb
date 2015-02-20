@@ -3,7 +3,7 @@
 	<%= form_for [@user, @workout], html: {class: 'form-inline'} do |f|%>
 		<div class="form-group">
 			<%= f.label :workout_category_id %>
-			<%= select_tag(:workout_category_id, options_for_select([['Cardio', 1], ['Weights', 2]]), class: 'form-control') %>
+			<%= f.select(:workout_category_id, options_for_select(@workout_categories.collect{ |w| [w.category, w.id] }), {}, {class: 'form-control'}) %>
 		</div>
 		<div class="form-group">
 			<%= f.label :duration %>

@@ -16,3 +16,7 @@
 //= require_tree .
 //= require jquery
 //= require bootstrap-sprockets
+
+$(document).ready(function() {
+	$(".alert-success").delay(2000).fadeOut('slow');
+});
