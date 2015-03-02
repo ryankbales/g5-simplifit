@@ -49,6 +49,9 @@ group :development, :test do
   gem 'spring'
 
   gem 'dotenv-rails'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'fabrication', '~> 2.12.2'
+  gem 'faker', '~> 1.4.3'
 end
 
 group :production do
