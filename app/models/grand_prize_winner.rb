@@ -1,3 +1,3 @@
 class GrandPrizeWinner < ActiveRecord::Base
-	has_many :simplifit_users
+	belongs_to :simplifit_user
 end

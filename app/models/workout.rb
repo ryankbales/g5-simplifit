@@ -1,5 +1,4 @@
 class Workout < ActiveRecord::Base
+  belongs_to :simplifit_user
 	belongs_to :workout_category
-	has_many :user_workouts
-	has_many :simplifit_users, through: :user_workouts
 end

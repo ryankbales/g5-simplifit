@@ -51,6 +51,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'fabrication', '~> 2.12.2'
+  gem 'factory_girl_rails'
   gem 'faker', '~> 1.4.3'
   gem 'shoulda-matchers', require: false
 end

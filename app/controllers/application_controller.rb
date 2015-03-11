@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   prepend_before_filter :authenticate_user!
 
+  def require_user
+  	redirect_to sign_in_path unless current_user
+  end
+
 	def g5_profile
 		img_and_name = []
 		page = Nokogiri::HTML(open('http://www.getg5.com/about/g5-team/'))

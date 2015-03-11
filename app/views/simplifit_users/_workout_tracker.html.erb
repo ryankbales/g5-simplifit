@@ -1,0 +1,20 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Workout Category</th>
+      <th>Duration</th>
+      <th>Date</th>
+    </tr>
+    <% unless @user.workouts.nil? %>
+      <tbody>
+        <% @user.workouts.each do |workout| %>
+          <tr>
+            <td><%= workout.category %></td>
+            <td><%= workout.duration %></td>
+            <td><%= workout.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  </thead>
+</table>
