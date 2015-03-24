@@ -1,6 +1,6 @@
 <div>
 	<p class="lead">Enter Todays Workout:</p>
-	<%= form_for [@user, @workout], html: {class: 'form-inline'} do |f|%>
+	<%= form_for [@simplifit_user, @workout], html: {class: 'form-inline'} do |f|%>
 		<div class="form-group">
 			<%= f.label :workout_category_id %>
 			<%= f.select(:workout_category_id, options_for_select(@workout_categories.collect{ |w| [w.category, w.id] }), {}, {class: 'form-control'}) %>

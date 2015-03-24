@@ -5,9 +5,9 @@
       <th>Duration</th>
       <th>Date</th>
     </tr>
-    <% unless @user.workouts.nil? %>
+    <% unless @simplifit_user.workouts.nil? %>
       <tbody>
-        <% @user.workouts.each do |workout| %>
+        <% @simplifit_user.workouts.each do |workout| %>
           <tr>
             <td><%= workout.category %></td>
             <td><%= workout.duration %></td>

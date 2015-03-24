@@ -56,6 +56,10 @@ group :development, :test do
   gem 'shoulda-matchers', require: false
 end
 
+group :test do
+  gem 'webmock'
+end
+
 group :production do
 	gem 'pg'
 	gem 'rails_12factor'

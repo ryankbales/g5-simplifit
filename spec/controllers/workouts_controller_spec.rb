@@ -25,9 +25,9 @@ describe WorkoutsController do
   end
 end
 
-context 'my secure context', :auth do
-  it 'can access some resource' do
-    visit('the place')
-    expect(page).to ...
-  end
-end
+# context 'my secure context', :auth do
+#   it 'can access some resource' do
+#     visit('the place')
+#     expect(page).to ...
+#   end
+# end

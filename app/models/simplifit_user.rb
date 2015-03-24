@@ -6,4 +6,6 @@ class SimplifitUser < ActiveRecord::Base
 	has_many :workouts
 	has_many :raffles, through: :user_raffle_winners
 
+  validates_presence_of :first_name, :last_name, :gender, :department_id, :user_email
+  validates_uniqueness_of :user_email
 end

@@ -14,7 +14,7 @@ class SimplifitUsersController < ApplicationController
   end
 
 	def new
-    @user = SimplifitUser.new
+    @simplifit_user = SimplifitUser.new
     @oauth_user_email = current_user.email
   end
 
@@ -24,12 +24,13 @@ class SimplifitUsersController < ApplicationController
   end
 
   def create
-    @user = SimplifitUser.new(user_params)
-    @user.user_avatar = find_g5_image(@user.first_name, @user.last_name)
-    if @user.save
+    @simplifit_user = SimplifitUser.new(user_params)
+    @simplifit_user.user_avatar = find_g5_image(@simplifit_user.first_name, @simplifit_user.last_name)
+    if @simplifit_user.save
       flash[:notice] = "You are registered!"
-      redirect_to simplifit_user_path(@user)
+      redirect_to simplifit_user_path(@simplifit_user)
     else
+      flash[:notice] = "You forgot to fill out some required fields."
       render :new
     end
   end
@@ -38,7 +39,7 @@ class SimplifitUsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if @simplifit_user.update(user_params)
       flash[:notice] = "Your Profile Was Updated"
       redirect_to simplifit_user_path
     else
@@ -53,7 +54,7 @@ class SimplifitUsersController < ApplicationController
   private
 
   def set_user
-    @user = SimplifitUser.find(params[:id])
+    @simplifit_user = SimplifitUser.find(params[:id])
   end
 
   # def require_same_user
