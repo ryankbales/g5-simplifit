@@ -9,7 +9,7 @@
       <tbody>
         <% @simplifit_user.workouts.each do |workout| %>
           <tr>
-            <td><%= workout.category %></td>
+            <td><%= workout.workout_category.category %></td>
             <td><%= workout.duration %></td>
             <td><%= workout.created_at %></td>
           </tr>

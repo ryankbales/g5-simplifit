@@ -1,33 +1,44 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe WorkoutsController do
-  describe "GET new" do 
-    context "for authenticated user"
-      it "sets new @workout user" do
-        dept = Fabricate(:department)
-        sf_user = Fabricate(:simplifit_user, department_id: dept.id)
-        get :new
+  
+  context "GET :new for authenticated user without a profile", :auth_controller do
+    it "redirects to sign in path" do
+      get :new
+      expect(response).to redirect_to new_simplifit_user_path
+    end
+  end
 
+  describe "POST #create" do
+    context "with a user that is authenticated and has a profile", :auth_controller do
+      let(:ryan) { Fabricate(:simplifit_user, user_email: user.email) }
+      let(:category) { Fabricate(:workout_category) }
+      it "should redirect to user path" do
+        post :create, workout: Fabricate.attributes_for(:workout, simplifit_user_id: ryan.id, workout_category_id: category.id, duration: 60)
+        expect(response).to redirect_to simplifit_user_path(ryan)
+      end
+
+      it "should set the notice" do
+        post :create, workout: Fabricate.attributes_for(:workout, simplifit_user_id: ryan.id, workout_category_id: category.id, duration: 60)
+        expect(flash[:success]).to be_present
       end
     end
-    
-    it "redirects to sign in path for unauthenticated users"
-  end
 
-  describe "POST create" do
-    let(:workout_category) { Fabricate(:workout_category) }
-    let(:workout) { Fabricate(:workout, workout_cateogory_id: workout_category.id) }
-    before do
-      post :create, workout_category_id: workout.workout_cateogory_id, created_at: workout.created_at, duration: workout.duration
+    context "with invalid workout input", :auth_controller do
+      let(:ryan) { Fabricate(:simplifit_user, user_email: user.email) }
+      let(:category) { Fabricate(:workout_category) }
+      it "should redirect to user path" do
+        post :create, workout: Fabricate.attributes_for(:workout, simplifit_user_id: ryan.id, workout_category_id: category.id)
+        expect(response).to redirect_to simplifit_user_path(ryan)
+      end
+      it "should not create a workout" do
+        post :create, workout: Fabricate.attributes_for(:workout, simplifit_user_id: ryan.id, workout_category_id: category.id)
+        expect(Workout.count).to eq(0)
+      end
+      it "should set error notice" do
+        post :create, workout: Fabricate.attributes_for(:workout, simplifit_user_id: ryan.id, workout_category_id: category.id)
+        expect(flash[:error]).to be_present
+      end
     end
-    it "should redirect to user path"
-    it "should set the notice"
   end
 end
-
-# context 'my secure context', :auth do
-#   it 'can access some resource' do
-#     visit('the place')
-#     expect(page).to ...
-#   end
-# end

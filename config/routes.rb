@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   end
 
   resources :departments
-  resources :workouts
   resources :workout_categories
 
   #static pages

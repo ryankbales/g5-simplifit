@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
   	redirect_to sign_in_path unless current_user
   end
 
+  def require_simplifit_user
+    email = current_user.email
+    redirect_to new_simplifit_user_path unless (SimplifitUser.find_by_user_email(email) if email)
+  end
+
 	def g5_profile
 		img_and_name = []
 		page = Nokogiri::HTML(open('http://www.getg5.com/about/g5-team/'))

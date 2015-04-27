@@ -20,6 +20,7 @@ class SimplifitUsersController < ApplicationController
 
   def show
     @workout = Workout.new
+    @workouts = Workout.all
     @workout_categories = WorkoutCategory.all
   end
 
@@ -56,11 +57,4 @@ class SimplifitUsersController < ApplicationController
   def set_user
     @simplifit_user = SimplifitUser.find(params[:id])
   end
-
-  # def require_same_user
-  #   if current_user != @user
-  #     flash[:error] = "This ain't your deal dude!"
-  #     redirect_to root_path
-  #   end
-  # end
 end

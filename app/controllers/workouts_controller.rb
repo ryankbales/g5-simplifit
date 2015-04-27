@@ -1,17 +1,20 @@
 class WorkoutsController < ApplicationController
-  before_action :current_app_user, only: [:new, :create, :edit, :update]
+  before_action :require_simplifit_user, only: [:new, :create, :edit, :update]
+  before_action :set_user, only: [:new]
+
 	def new
-		@workout = Workout.new
+		
 	end
 
 	def create
     @workout = Workout.new(workout_params)
+    @workout.simplifit_user_id = params[:simplifit_user_id]
     if @workout.save
-      flash[:notice] = "Your workout has been recorded.  Nice work!"
-      redirect_to simplifit_user_path(@workout.simplifit_user)
+      flash[:success] = "Your workout has been recorded.  Nice work!"
     else
       flash[:error] = "You forgot to enter some info about your workout."
     end
+    redirect_to simplifit_user_path(@workout.simplifit_user)
   end
 
 	def edit
@@ -21,6 +24,10 @@ class WorkoutsController < ApplicationController
   end
 
 	def workout_params
-    params.require(:workout).permit(:workout_category_id, :duration, :created_at)
+    params.require(:workout).permit(:workout_category_id, :duration, :simplifit_user_id)
+  end
+
+  def set_user
+    @simplifit_user = SimplifitUser.find(params[:id])
   end
 end
