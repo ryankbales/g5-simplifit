@@ -27,7 +27,7 @@ gem 'nokogiri'
 gem 'bootstrap-sass', '~> 3.3.3'
 
 gem 'g5_authenticatable'
-
+gem 'cancancan', '~> 1.10'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
